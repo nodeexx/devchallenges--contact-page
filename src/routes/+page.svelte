@@ -8,20 +8,18 @@ import { zodClient } from 'sveltekit-superforms/adapters';
 import { formSchema } from '$lib/shared/core/schemas/contact-form';
 
 const COMPANY_SIZES = [
-  '1-10',
-  '11-50',
-  '51-200',
-  '201-500',
-  '501-1000',
-  '1000+',
+  '50-100 employees',
+  '101-500 employees',
+  '501-1000 employees',
+  '1000+ employees',
 ];
 
 const SUBJECTS = [
-  'Building a Landing page',
-  'Building a Website',
-  'Building a Web app',
-  'Building a Mobile app',
-  'Building a Desktop app',
+  'Building Landing pages',
+  'Building Websites',
+  'Building Web apps',
+  'Building Mobile apps',
+  'Building Desktop apps',
 ];
 
 export let data;
@@ -37,13 +35,19 @@ $: selectedCompanySize = $formData.companySize
       label: $formData.companySize,
       value: $formData.companySize,
     }
-  : undefined;
+  : {
+      label: COMPANY_SIZES[0],
+      value: COMPANY_SIZES[0],
+    }; // : undefined;
 $: selectedSubject = $formData.subject
   ? {
       label: $formData.subject,
       value: $formData.subject,
     }
-  : undefined;
+  : {
+      label: SUBJECTS[0],
+      value: SUBJECTS[0],
+    }; // : undefined;
 </script>
 
 <a href="#/">
@@ -55,17 +59,19 @@ $: selectedSubject = $formData.subject
   />
 </a>
 
-<h1
-  class="mt-[40px] text-center text-[48px] font-bold leading-tight text-challenge-white"
->
-  Interested in our business pricing?
-</h1>
+<div class="flex flex-col items-center">
+  <h1
+    class="mt-[40px] max-w-[577px] text-center text-[48px] font-bold leading-tight text-challenge-white xl:text-[64px]"
+  >
+    Interested in our business pricing?
+  </h1>
 
-<p
-  class="pt-4 text-center text-[20px] font-medium leading-normal text-challenge-white"
->
-  Fill out the form to view details and we’ll contact you as soon as possible.
-</p>
+  <p
+    class="max-w-[466px] pt-4 text-center text-[20px] font-medium leading-normal text-challenge-white xl:max-w-[641px] xl:text-[32px]"
+  >
+    Fill out the form to view details and we’ll contact you as soon as possible.
+  </p>
+</div>
 
 <div class="flex w-full items-center justify-center">
   <form
@@ -74,7 +80,7 @@ $: selectedSubject = $formData.subject
     class="mt-[72px] flex flex-1 flex-col gap-6 rounded-3xl bg-challenge-white/20 p-[30px] pb-[107px] xl:max-w-[810px]"
   >
     <div class="flex w-full flex-col gap-6 lg:flex-row lg:gap-[18px]">
-      <Form.Field {form} name="name" class="flex-1">
+      <Form.Field {form} name="name" class="flex-1 space-y-[4px]">
         <!-- Name -->
         <Form.Control let:attrs>
           <Form.Label
@@ -85,14 +91,14 @@ $: selectedSubject = $formData.subject
             {...attrs}
             bind:value="{$formData.name}"
             placeholder="Ethan Jonson"
-            class="px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black placeholder:text-challenge-gray"
+            class="h-auto rounded-2xl px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black placeholder:text-challenge-gray"
           />
         </Form.Control>
         <Form.FieldErrors class="text-red-300" />
       </Form.Field>
 
       <!-- Company Email -->
-      <Form.Field {form} name="companyEmail" class="flex-1">
+      <Form.Field {form} name="companyEmail" class="flex-1 space-y-[4px]">
         <Form.Control let:attrs>
           <Form.Label
             class="text-[14px] font-medium leading-normal text-challenge-white data-[fs-error]:text-red-300"
@@ -103,7 +109,7 @@ $: selectedSubject = $formData.subject
             bind:value="{$formData.companyEmail}"
             type="email"
             placeholder="ethan@jonson.com"
-            class="px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black placeholder:text-challenge-gray"
+            class="h-auto rounded-2xl px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black placeholder:text-challenge-gray"
           />
         </Form.Control>
         <Form.FieldErrors class="text-red-300" />
@@ -112,7 +118,7 @@ $: selectedSubject = $formData.subject
 
     <div class="flex w-full flex-col gap-6 lg:flex-row lg:gap-[18px]">
       <!-- Company Size -->
-      <Form.Field {form} name="companySize" class="flex-1">
+      <Form.Field {form} name="companySize" class="flex-1 space-y-[4px]">
         <Form.Control let:attrs>
           <Form.Label
             class="text-[14px] font-medium leading-normal text-challenge-white data-[fs-error]:text-red-300"
@@ -128,7 +134,7 @@ $: selectedSubject = $formData.subject
             <Select.Trigger
               {...attrs}
               aria-label="Select your company's size"
-              class="px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black"
+              class="h-auto rounded-2xl px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black"
             >
               <Select.Value
                 placeholder="Select your company's size"
@@ -151,7 +157,7 @@ $: selectedSubject = $formData.subject
       </Form.Field>
 
       <!-- Subject -->
-      <Form.Field {form} name="subject" class="flex-1">
+      <Form.Field {form} name="subject" class="flex-1 space-y-[4px]">
         <Form.Control let:attrs>
           <Form.Label
             class="text-[14px] font-medium leading-normal text-challenge-white data-[fs-error]:text-red-300"
@@ -165,7 +171,7 @@ $: selectedSubject = $formData.subject
           >
             <Select.Trigger
               {...attrs}
-              class="[svg]:opacity-100 px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black"
+              class="[svg]:opacity-100 h-auto rounded-2xl px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black"
             >
               <Select.Value
                 placeholder="Select a subject"
@@ -185,7 +191,7 @@ $: selectedSubject = $formData.subject
     </div>
 
     <!-- Message -->
-    <Form.Field {form} name="message" class="space-y-[5px]">
+    <Form.Field {form} name="message" class="space-y-[4px]">
       <Form.Control let:attrs>
         <Form.Label
           class="text-[14px] font-medium leading-normal text-challenge-white data-[fs-error]:text-red-300"
@@ -195,7 +201,7 @@ $: selectedSubject = $formData.subject
         <Textarea
           {...attrs}
           placeholder="Enter your message..."
-          class="resize-none px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black placeholder:text-challenge-gray"
+          class="h-auto resize-none rounded-2xl px-[22px] py-[24px] text-[16px] font-semibold leading-normal text-challenge-black placeholder:text-challenge-gray"
           bind:value="{$formData.message}"
         />
       </Form.Control>
