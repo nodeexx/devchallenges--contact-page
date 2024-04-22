@@ -1,8 +1,16 @@
 # devChallenges - Contact Page
 
-<!-- ![Solution screenshot](./docs/screenshots/solution-screenshot.png) -->
+![Solution screenshot](./docs/screenshots/solution-screenshot.png)
 
-<!-- Personal solution to the Contact Page challenge from devChallenges: -->
+Personal solution to the Contact Page challenge from devChallenges: [Contact Page | devChallenges.io | Real-life Coding Projects to become a Software Engineer](https://devchallenges.io/challenge/contact-page)
+
+**What’s not implemented to conserve time:**
+
+-   Page break down into multiple components
+-   Custom validation errors
+-   User notification on successful form submit
+-   Responsivity for screens with width < 660px
+-   Other things not in the designs
 
 ## Developing
 
