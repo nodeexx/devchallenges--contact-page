@@ -61,7 +61,7 @@ const config: Config = {
       fontFamily: {
         // Tailwind CSS Preflight (`tailwindcss/base`) uses `sans` as the default font
         // https://tailwindcss.com/docs/font-family#customizing-the-default-font
-        sans: [...defaultTheme.fontFamily.sans],
+        sans: ['Be Vietnam Pro', ...defaultTheme.fontFamily.sans],
       },
     },
   },
